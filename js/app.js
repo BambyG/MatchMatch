@@ -1,11 +1,17 @@
 /*
- * Create a list that holds all of your cards
+ * Select all the cards 
  */
 
 const cards = document.getElementsByTagName("UL")[1].getElementsByTagName("I");
+
+/*
+ * Calculate the number of cards in the game
+ */
 const cardsLength = document.getElementsByTagName("UL")[1].getElementsByTagName("I").length;
 
-/*const allCardsIcons = [...cards];*/
+/*
+ * Create a list that holds all of your cards icons
+ */
 
 const allCards = []
 for (let i =0; i<cards.length; i++) {
