@@ -49,12 +49,19 @@ while (mainDeck.firstChild) mainDeck.removeChild(mainDeck.firstChild);
 
 for (let i = 0; i < cardsLength; i++) {
     const newElement = document.createElement('li');
-    newElement.className = 'card open show';
+    newElement.className = 'card';
     newElement.innerHTML =shuffleallCardsIcons[i];
     mainDeck.appendChild(newElement);
 }
 
-console.log(mainDeck)
+const oneCard = document.getElementsByClassName('card')
+
+for (let i = 0; i < cardsLength; i++) {
+    oneCard[i].addEventListener('click', function () {
+    oneCard[i].classList.add("open");
+    oneCard[i].classList.add("show");
+});
+}
 
 
 /*
