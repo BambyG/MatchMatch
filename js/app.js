@@ -56,12 +56,71 @@ for (let i = 0; i < cardsLength; i++) {
 
 const oneCard = document.getElementsByClassName('card')
 
+const openCards = []
+
+
+/* for (let i = 0; i < cardsLength; i++) {
+    oneCard[i].addEventListener('click', 
+    function displayCard(event) {
+        console.log(event)
+        if (openCards.length<2) {
+            oneCard[i].classList.add("open");
+            oneCard[i].classList.add("show");
+            openCards.push(oneCard[i]);
+            }; 
+ 
+        if (openCards[0].innerHTML !== openCards[1].innerHTML) {
+            setTimeout(function(){
+                openCards[0].classList.remove("open")
+                openCards[0].classList.remove("show")
+                openCards[1].classList.remove("open")
+                openCards[1].classList.remove("show")
+                openCards = []
+            },1000)
+  
+        } 
+      
+   
+      
+    })}; 
+     */
+
+
 for (let i = 0; i < cardsLength; i++) {
-    oneCard[i].addEventListener('click', function () {
-    oneCard[i].classList.add("open");
-    oneCard[i].classList.add("show");
-});
+    oneCard[i].addEventListener('click', 
+    function displayCard(event) {
+        open = event.currentTarget.classList.add("open")
+        show = event.currentTarget.classList.add("show")
+        openCards.push(event.currentTarget)
+    
+    if (openCards.length === 2 && openCards[0] !== openCards[1]){
+        setTimeout(function(){
+            openCards[0].classList.remove("open")
+            openCards[0].classList.remove("show")
+            openCards[1].classList.remove("open")
+            openCards[1].classList.remove("show")
+            openCards === []},1000)
+  /*       open.classList.remove("open")
+        show.classList.remove("show") */
+        
+
+    }
+    })
 }
+
+
+
+
+        
+
+
+
+
+
+    
+    
+
+
 
 
 /*
