@@ -46,66 +46,49 @@ const shuffleallCardsIcons = shuffle(allCards);
 let mainDeck = document.getElementsByClassName("deck")[0]
 while (mainDeck.firstChild) mainDeck.removeChild(mainDeck.firstChild);
 
+const oneCard = document.getElementsByClassName('card')
 
 for (let i = 0; i < cardsLength; i++) {
     const newElement = document.createElement('li');
     newElement.className = 'card';
-    newElement.innerHTML =shuffleallCardsIcons[i];
+    newElement.innerHTML = shuffleallCardsIcons[i];
     mainDeck.appendChild(newElement);
+    oneCard[i].addEventListener('click', logic)   
 }
 
-const oneCard = document.getElementsByClassName('card')
+var openCards = []
 
-const openCards = []
+function logic(event){
+    displayCard(event)
+    openCards.push(event.currentTarget)
+    matches(event) 
 
-
-/* for (let i = 0; i < cardsLength; i++) {
-    oneCard[i].addEventListener('click', 
-    function displayCard(event) {
-        console.log(event)
-        if (openCards.length<2) {
-            oneCard[i].classList.add("open");
-            oneCard[i].classList.add("show");
-            openCards.push(oneCard[i]);
-            }; 
- 
-        if (openCards[0].innerHTML !== openCards[1].innerHTML) {
-            setTimeout(function(){
-                openCards[0].classList.remove("open")
-                openCards[0].classList.remove("show")
-                openCards[1].classList.remove("open")
-                openCards[1].classList.remove("show")
-                openCards = []
-            },1000)
-  
-        } 
-      
-   
-      
-    })}; 
-     */
-
-
-for (let i = 0; i < cardsLength; i++) {
-    oneCard[i].addEventListener('click', 
-    function displayCard(event) {
-        open = event.currentTarget.classList.add("open")
-        show = event.currentTarget.classList.add("show")
-        openCards.push(event.currentTarget)
-    
-    if (openCards.length === 2 && openCards[0] !== openCards[1]){
-        setTimeout(function(){
-            openCards[0].classList.remove("open")
-            openCards[0].classList.remove("show")
-            openCards[1].classList.remove("open")
-            openCards[1].classList.remove("show")
-            openCards === []},1000)
-  /*       open.classList.remove("open")
-        show.classList.remove("show") */
-        
-
+function displayCard(event) {
+        event.currentTarget.classList.add("open")
+        event.currentTarget.classList.add("show")
     }
-    })
+
+function matches (e){
+    if ((openCards.length) % 2 === 0) {
+        if (openCards[0].getElementsByTagName('I')[0].className !== openCards[1].getElementsByTagName('I')[0].className){
+            setTimeout(function(){
+                hideCard(openCards[0])       
+                hideCard(openCards[1]) 
+                openCards = []      
+            },500)
+        } else {
+            openCards = []
+        } 
+         
+    }
+}
+
+}
+
+
+function hideCard(element) {
+    element.classList.remove("open")
+    element.classList.remove("show")
 }
 
 
