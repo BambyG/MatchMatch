@@ -3,18 +3,14 @@
  */
 
 const cards = document.getElementsByTagName("UL")[1].getElementsByTagName("I");
-
-/*
- * Calculate the number of cards in the game
- */
-const cardsLength = document.getElementsByTagName("UL")[1].getElementsByTagName("I").length;
+const cardsLength = cards.length;
 
 /*
  * Create a list that holds all of your cards icons
  */
 
 const allCards = []
-for (let i =0; i<cards.length; i++) {
+for (let i =0; i<cardsLength; i++) {
     const icon = document.getElementsByTagName("UL")[1].getElementsByTagName("LI")[i].innerHTML.trim();
     allCards.push(icon);
 }
@@ -53,21 +49,27 @@ for (let i = 0; i < cardsLength; i++) {
     newElement.className = 'card';
     newElement.innerHTML = shuffleallCardsIcons[i];
     mainDeck.appendChild(newElement);
-    oneCard[i].addEventListener('click', logic)   
+    oneCard[i].addEventListener('click', logic)   /*set up the event listener for a card. If a card is clicked:*/
 }
 
-var openCards = []
+
+let openCards = []
+let matchedCards = []
 
 function logic(event){
     displayCard(event)
     openCards.push(event.currentTarget)
     matches(event) 
+    youWon()
+}
 
+/*Display the card on click*/
 function displayCard(event) {
         event.currentTarget.classList.add("open")
         event.currentTarget.classList.add("show")
     }
 
+/*Checkes if the clicked cards are similar ot not. If not it hides them again using the hideCard function. If it maches keep the open and show class*/
 function matches (e){
     if ((openCards.length) % 2 === 0) {
         if (openCards[0].getElementsByTagName('I')[0].className !== openCards[1].getElementsByTagName('I')[0].className){
@@ -77,32 +79,30 @@ function matches (e){
                 openCards = []      
             },500)
         } else {
+            matchedCards.push(event.currentTarget)
             openCards = []
-        } 
-         
+        }         
     }
 }
 
-}
 
-
+/*Hide the cards by remove the set open and show class on click*/
 function hideCard(element) {
     element.classList.remove("open")
     element.classList.remove("show")
 }
 
+function refreshPage(){
+    window.location.reload();
+} 
 
-
-
-        
-
-
-
-
-
-    
-    
-
+function youWon() {
+    if (matchedCards.length === cardsLength/2)
+    setTimeout((
+    ) => {
+        alert("YOU WON!")  
+    }, 500);  
+}
 
 
 
