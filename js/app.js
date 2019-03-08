@@ -76,11 +76,15 @@ function matches (e){
             setTimeout(function(){
                 hideCard(openCards[0])       
                 hideCard(openCards[1]) 
+                oneLessMove() 
                 openCards = []      
             },500)
         } else {
             matchedCards.push(event.currentTarget)
+            console.log(getElementsByClassName('moves').innerHTML)
             openCards = []
+                    
+            
         }         
     }
 }
@@ -104,8 +108,12 @@ function youWon() {
     }, 500);  
 }
 
+function oneLessMove() {
+    moves = document.getElementsByClassName('moves')[0]
+    moves.innerHTML = parseFloat(moves.innerHTML)-1
 
-
+}
+ 
 /*
  * set up the event listener for a card. If a card is clicked:
  *  - display the card's symbol (put this functionality in another function that you call from this one)
