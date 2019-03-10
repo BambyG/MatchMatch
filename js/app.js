@@ -75,26 +75,33 @@ function matches (e){
         if (openCards[0].getElementsByTagName('I')[0].className !== openCards[1].getElementsByTagName('I')[0].className){
             setTimeout(function(){
                 hideCard(openCards[0])       
-                hideCard(openCards[1]) 
-                oneLessMove() 
+                hideCard(openCards[1])
+                oneLessMove()
+                oneLessStar()
+                noMoreMoves()
                 openCards = []      
             },500)
         } else {
             matchedCards.push(event.currentTarget)
-            console.log(getElementsByClassName('moves').innerHTML)
-            openCards = []
-                    
-            
-        }         
-    }
+            validCard(openCards[0]) 
+            validCard(openCards[1]) 
+            openCards = []                       
+        }  
+    }   
 }
 
-
-/*Hide the cards by remove the set open and show class on click*/
 function hideCard(element) {
     element.classList.remove("open")
     element.classList.remove("show")
 }
+
+
+function validCard(element) {
+    element.classList.add("match")
+}
+
+/*Hide the cards by remove the set open and show class on click*/
+
 
 function refreshPage(){
     window.location.reload();
@@ -108,12 +115,26 @@ function youWon() {
     }, 500);  
 }
 
-function oneLessMove() {
-    moves = document.getElementsByClassName('moves')[0]
-    moves.innerHTML = parseFloat(moves.innerHTML)-1
-
+function oneLessMove() {  
+    let moves = document.getElementsByClassName('moves')[0]   
+    moves.innerHTML = parseFloat(moves.innerHTML)-1  
 }
+
+function oneLessStar() {
+    let stars = document.getElementsByClassName('stars')[0]
+    stars.removeChild(stars.lastElementChild)
+}
+
+function noMoreMoves() {
+    if (document.getElementsByClassName('stars')[0].getElementsByTagName("li").length === 0) 
+    setTimeout((
+        ) => {
+            alert("YOU LOST!")  
+        }, 150);  
+    }
  
+
+
 /*
  * set up the event listener for a card. If a card is clicked:
  *  - display the card's symbol (put this functionality in another function that you call from this one)
