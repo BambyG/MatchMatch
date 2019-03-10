@@ -72,7 +72,11 @@ function displayCard(event) {
 /*Checkes if the clicked cards are similar ot not. If not it hides them again using the hideCard function. If it maches keep the open and show class*/
 function matches (e){
     if ((openCards.length) % 2 === 0) {
-        if (openCards[0].getElementsByTagName('I')[0].className !== openCards[1].getElementsByTagName('I')[0].className){
+        if (openCards[0].getElementsByTagName('I')[0].className !== openCards[1].getElementsByTagName('I')[0].className
+        | openCards[0].getElementsByTagName('I')[0].offsetTop === openCards[1].getElementsByTagName('I')[0].offsetTop
+        | openCards[0].getElementsByTagName('I')[0].offsetWidth === openCards[1].getElementsByTagName('I')[0].offsetWidth)
+
+        {
             setTimeout(function(){
                 hideCard(openCards[0])       
                 hideCard(openCards[1])
@@ -89,6 +93,10 @@ function matches (e){
         }  
     }   
 }
+
+
+offsetTop: 346
+offsetWidth: 124
 
 function hideCard(element) {
     element.classList.remove("open")
@@ -111,7 +119,17 @@ function youWon() {
     if (matchedCards.length === cardsLength/2)
     setTimeout((
     ) => {
-        alert("YOU WON!")  
+        b = document.getElementsByClassName('deck')[0]
+        while (b.firstChild) {
+                b.removeChild(b.firstChild);
+            }
+            b.innerHTML = "<p class='message'>Congratulations, You won!.</p>"
+            btn = document.createElement("BUTTON")
+            btn.setAttribute("onclick","refreshPage()");
+            btn.className +='replayButton'
+            t = document.createTextNode("REPLAY")
+            btn.appendChild(t); 
+            b.appendChild(btn);   
     }, 500);  
 }
 
@@ -121,20 +139,34 @@ function oneLessMove() {
 }
 
 function oneLessStar() {
-    let stars = document.getElementsByClassName('stars')[0]
-    stars.removeChild(stars.lastElementChild)
+    let movesl = document.getElementsByClassName('moves')[0]   
+    movesCount = parseFloat(movesl.innerHTML)  
+    if (movesCount=== 6 | movesCount === 3 | movesCount=== 0) {
+        let stars = document.getElementsByClassName('stars')[0]
+        stars.removeChild(stars.lastElementChild)
+    }    
 }
 
 function noMoreMoves() {
     if (document.getElementsByClassName('stars')[0].getElementsByTagName("li").length === 0) 
     setTimeout((
         ) => {
-            alert("YOU LOST!")  
+            b = document.getElementsByClassName('deck')[0]
+            while (b.firstChild) {
+                b.removeChild(b.firstChild);
+            }
+            b.innerHTML = "<p class='message'>No moves left. Sorry, you Lost.</p>"
+            btn = document.createElement("BUTTON")
+            btn.setAttribute("onclick","refreshPage()");
+            btn.className +='replayButton'
+            t = document.createTextNode("REPLAY")
+            btn.appendChild(t); 
+            b.appendChild(btn);   
+
+
         }, 150);  
     }
  
-
-
 /*
  * set up the event listener for a card. If a card is clicked:
  *  - display the card's symbol (put this functionality in another function that you call from this one)
