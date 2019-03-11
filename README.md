@@ -7,7 +7,7 @@ The starter project has some HTML and CSS styling to display a static version of
 I am turning the static version to an interactive one modifying the HTML and CSS files, but primarily the JavaScript file.
 
 
-Please click [here](https://portfolio-bamby.netlify.com/) to be redirected to the website. 
+Please click [here](https://matchit-bamby.netlify.com/) to be redirected to the website. 
 
 ![Illustration](./img/screenmatch.png)
 
@@ -21,7 +21,7 @@ Please click [here](https://portfolio-bamby.netlify.com/) to be redirected to th
 
  The project does not have minimum hardware requirements.
  Just view the HTML Page in Your Browser.
- Please click [here](https://portfolio-bamby.netlify.com/) to be redirected to the website.
+ Please click [here](https://matchit-bamby.netlify.com/) to be redirected to the website.
 
  # Contributing 
 
